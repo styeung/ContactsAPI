@@ -21,4 +21,11 @@ class User < ActiveRecord::Base
     :source => :contact
   )
 
+  has_many(
+    :contact_groups,
+    :class_name => "ContactGroup",
+    :foreign_key => :user_id,
+    :primary_key => :id
+  )
+
 end

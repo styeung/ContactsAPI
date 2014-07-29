@@ -19,7 +19,12 @@ class ContactsController < ApplicationController
   end
 
   def index
-    render json: Contact.all
+    if params.has_key? :user_id
+      @user = User.find(params[:user_id])
+      render json: @user.contacts + @user.shared_contacts
+    else
+      render json: Contact.all
+    end
   end
 
   def show

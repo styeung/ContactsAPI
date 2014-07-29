@@ -23,4 +23,17 @@ class Contact < ActiveRecord::Base
     :through => :shares,
     :source => :user
   )
+
+  has_many(
+    :memberships,
+    :class_name => "GroupMembership",
+    :foreign_key => :contact_id,
+    :primary_key => :id
+  )
+
+  has_many(
+    :contact_groups,
+    :through => :memberships,
+    :source => :group
+  )
 end

@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   )
 
   has_many(
-    :contact_shares,
+    :shares, :dependent => :destroy,
     :class_name => "ContactShare",
     :foreign_key => :user_id,
     :primary_key => :id
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   has_many(
     :shared_contacts,
-    :through => :contact_shares,
+    :through => :shares,
     :source => :contact
   )
 

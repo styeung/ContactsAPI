@@ -12,7 +12,7 @@ class Contact < ActiveRecord::Base
   )
 
   has_many(
-    :contact_shares,
+    :shares, :dependent => :destroy,
     :class_name => "ContactShare",
     :foreign_key => :contact_id,
     :primary_key => :id
@@ -20,7 +20,7 @@ class Contact < ActiveRecord::Base
 
   has_many(
     :shared_users,
-    :through => :contact_shares,
+    :through => :shares,
     :source => :user
   )
 end
